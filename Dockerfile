@@ -1,14 +1,5 @@
-FROM coorpacademy/docker-pyspark:2.0.0-alpine
+FROM sdehaes/spark-py:v2.4.1-hadoop-2.9.2
 
-# GENERAL DEPENDENCIES
-RUN apk update && \
-    apk add zip
-
-# PYTHON DEPENDENCIES
-COPY example-requirements.txt /etc/example-requirements.txt
-RUN pip install -r /etc/example-requirements.txt && \
-    rm /etc/example-requirements.txt
-
-ADD Hello.py /
-
-CMD [ "python", "./Hello.py" ]
+COPY . /app
+WORKDIR /app
+RUN python3 -m pip install . --no-cache-dir
