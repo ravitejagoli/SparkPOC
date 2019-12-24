@@ -8,3 +8,7 @@ RUN apk update && \
 COPY example-requirements.txt /etc/example-requirements.txt
 RUN pip install -r /etc/example-requirements.txt && \
     rm /etc/example-requirements.txt
+
+ADD Hello.py /
+
+CMD [ "python", "./Hello.py" ]
